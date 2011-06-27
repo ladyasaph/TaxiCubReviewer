@@ -1,0 +1,22 @@
+{%extends "thetaxi/base.html"%}
+{% block content %}
+	{{ taxi.carnumber }},{{taxi.created|linebreaks}}
+	
+	The average rating of the driver:<h4 style = "colour:red">{total rate}<h4>
+
+	{%for c in comments%}
+		{{c.rate|linebreaks}}
+		{{c.author|linebreaks}} 
+		{{c.comment|linebreaks }} 
+		{{c.created|linebreaks}}
+	{%endfor%}
+
+	<div>New Comment</div>
+	<form method='post' action="">
+	{{ form }}
+	<input type='submit' name='Submit'>
+	</form>
+	</div>
+	<div><a href="/thetaxi/add.html">Add Comment</a></div><br/>
+{% endblock %}
+
