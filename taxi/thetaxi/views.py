@@ -6,6 +6,28 @@ from django import forms
 from django.forms import ModelForm
 from django.views.decorators.csrf import csrf_exempt
 
+class TaxiForm(ModelForm):
+	class Meta:
+		model =Ratings
+		exclude=['created']
+	
+
+
+@csrf_exempt
+def add(request):
+	
+	if request.method == 'POST':
+		form = TaxiForm(request.POST)
+		return HttpResponseRedirect('thetaxi/home.html')
+
+	else:
+		form =TaxiForm()
+	t = loader.get_template('thetaxi/add.html')
+	c = Context({'form':form.as_p()})
+	return HttpResponse(t.render(c))
+
+
+
 class SearchForm(forms.Form):
 	search = forms.CharField()
 
@@ -33,8 +55,8 @@ def taxi_details(request):
 			return HttpResponseRedirect(request.path)
 	else:
 		form = RatingsForm()
-	
 	t = loader.get_template('thetaxi/detail.html')
 	rating = Ratings.objects.filter(carnumber__pk=id)	
 	c = Context({'taxi':Taxi, 'comments':comments, 'form':form.as_p()})
 	return HttpResponse(t.render(c))
+
