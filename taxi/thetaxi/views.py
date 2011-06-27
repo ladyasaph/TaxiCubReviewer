@@ -1,5 +1,4 @@
 # Create your views here.
-<<<<<<< HEAD
 from django.template import Context, loader
 from django.http import HttpResponse, HttpResponseRedirect
 from models import Taxi, Ratings
@@ -8,13 +7,14 @@ from django.forms import ModelForm
 from django.views.decorators.csrf import csrf_exempt
 
 class SearchForm(forms.Form):
-	search = forms.TextField()
+	search = forms.CharField()
 
 def home(request,):	 
 	if request.method == 'POST':
 		form = SearchForm(request.POST)
 	else:
 		form = SearchForm()
+	return HttpResponse("change this")
 	
 class RatingsForm(ModelForm):
 	class Meta:

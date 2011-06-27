@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib import admin
-
 # Create your models here.
 class Taxi(models.Model):
 	carnumber = models.CharField(max_length = 10, unique = True)
@@ -18,7 +17,7 @@ class Ratings(models.Model):
 	comment = models.TextField(blank = True)
 	author = models.CharField(max_length=15)
 	created = models.DateField(auto_now_add = True)
-	carnumber  = models.ForeignKey(Ratings)
+	carnumber  = models.ForeignKey(Taxi)
 
 admin.site.register(Taxi)
 admin.site.register(Ratings)
