@@ -4,6 +4,8 @@ from django.contrib import admin
 class Taxi(models.Model):
 	carnumber = models.CharField(max_length = 10, unique = True)
 	created = models.DateField(auto_now_add = True)
+	def __unicode__(self):
+		return self.carnumber
 
 class Ratings(models.Model):
  	RATING_CHOICES = (
@@ -13,11 +15,13 @@ class Ratings(models.Model):
 		(4, 'very good'),
 		(5, 'excellent'),
     	)
-	rate = models.CharField(max_length=10, choices=RATING_CHOICES)
+	rate = models.IntegerField(max_length=10, choices=RATING_CHOICES)
 	comment = models.TextField(blank = True)
 	author = models.CharField(max_length=15)
 	created = models.DateField(auto_now_add = True)
 	carnumber  = models.ForeignKey(Taxi)
+	def __unicode__(self):
+		return self.author
 
 admin.site.register(Taxi)
 admin.site.register(Ratings)

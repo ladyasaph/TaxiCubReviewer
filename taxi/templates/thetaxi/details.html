@@ -2,9 +2,9 @@
 {% block content %}
 	{{ taxi.carnumber }},{{taxi.created|linebreaks}}
 	
-	The average rating of the driver:<h4 style = "colour:red">{total rate}<h4>
+	The average rating of the driver:<h4 style = "colour:red">{totalrate}<h4>
 
-	{%for c in comments%}
+	{%for c in taxi%}
 		{{c.rate|linebreaks}}
 		{{c.author|linebreaks}} 
 		{{c.comment|linebreaks }} 

@@ -1,9 +1,11 @@
-{ % extend 'thetaxi/base.html' %}
+{% extends 'thetaxi/base.html' %}
+{% block content %}
 
-<form action="details.html" method="get">
-{{ form.as_p }}
+<form action="/thetaxi/details" method="get">
+{{ form }}
 <input type="submit" value="Submit" />
 </form>
-<a href='/thetaxi/add'>ADD</a>
+<a href='/thetaxi/add'>Add Taxi</a>
+
 
 {% endblock %}
