@@ -9,12 +9,14 @@ from django.views.decorators.csrf import csrf_exempt
 class SearchForm(forms.Form):
 	search = forms.CharField()
 
-def home(request,):	 
+def home(request):	 
 	if request.method == 'POST':
 		form = SearchForm(request.POST)
-	else:
-		form = SearchForm()
-	return HttpResponse("change this")
+
+	form = SearchForm()
+ 	t = loader.get_template('thetaxi/home.html')	
+	c = Context({'form':form.as_p()})
+	return HttpResponse(t.render(c))
 	
 class RatingsForm(ModelForm):
 	class Meta:
@@ -22,10 +24,10 @@ class RatingsForm(ModelForm):
 		exclude=['created', 'carnumber']
 
 def taxi_details(request):
-	taxi = Taxi.objects.get(carnumber = request.GET['search'])
+
 	if request.method == 'GET':
-		rating = Ratings(carnumber=taxi)
-		form = RatingsForm(request.POST,instance=rating)
+		taxi = Taxi.objects.get(carnumber = request.GET['search'])
+		form = RatingsForm(request.GET,instance=rating)
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect(request.path)
