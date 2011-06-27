@@ -10,11 +10,13 @@
 		{{c.comment|linebreaks }} 
 		{{c.created|linebreaks}}
 	{%endfor%}
+
 	<div>New Comment</div>
 	<form method='post' action="">
 	{{ form }}
 	<input type='submit' name='Submit'>
 	</form>
-		
+	</div>
+	<div><a href="/thetaxi/add.html">Add Comment</a></div><br/>
 {% endblock %}
 
